@@ -1113,18 +1113,13 @@ def delete_resources_by_ids(
         :return: Status message.
         """
 
-        # secrets = get_client_by_integration_name(integration_name)
         client_secrets = get_client_by_integration_name(integration_name)
         credential = ClientSecretCredential(
             tenant_id=client_secrets["tenant_id"],
             client_id=client_secrets["client_id"],
             client_secret=client_secrets["client_secret"],
         )
-        # credential = ClientSecretCredential(
-        #       tenant_id = '5b956597-aaf0-45b1-aa8c-78023da8463c',
-        # client_id = '80b15c47-2b6d-4576-a7e9-6d7372a58eb9',
-        # client_secret = 'nng8Q~UxQ7A_vRir5ipJJcIhjgohOSk7R6UhLcVT'
-        # )
+       
         resource_client = ResourceManagementClient(credential, subscription_id)
         delete_operations = []
         with ThreadPoolExecutor() as executor:
